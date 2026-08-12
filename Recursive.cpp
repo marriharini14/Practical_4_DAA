@@ -1,43 +1,25 @@
 #include <iostream>
-#include <algorithm> // For std::swap
+using namespace std;
 
-void recursiveSelectionSort(int arr[], int size, int index = 0) {
-    if (index >= size - 1) {
-        return;
+long long factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
     }
-
-    int minIndex = index;
-    for (int i = index + 1; i < size; ++i) {
-        if (arr[i] < arr[minIndex]) {
-            minIndex = i;
-        }
-    }
-
-    std::swap(arr[index], arr[minIndex]);
-    recursiveSelectionSort(arr, size, index + 1);
+    return n * factorial(n - 1);
 }
 
 int main() {
-    int size;
+    int num;
 
-    std::cout << "Enter size: ";
-    std::cin >> size;
+    cout << "Enter a positive integer: ";
+    cin >> num;
 
-    int* arr = new int[size];
-
-    std::cout << "Enter " << size << " numbers: ";
-    for (int i = 0; i < size; ++i) {
-        std::cin >> arr[i];
+    if (num < 0) {
+        cout << "Error: Factorial is not defined for negative numbers." << endl;
+    } else {
+        cout << "Factorial of " << num << " = " << factorial(num) << endl;
     }
 
-    recursiveSelectionSort(arr, size);
-
-    std::cout << "Sorted result: ";
-    for (int i = 0; i < size; ++i) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
-
-    delete[] arr;
     return 0;
 }
+
